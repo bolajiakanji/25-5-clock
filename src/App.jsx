@@ -118,6 +118,16 @@ function App() {
 
     }
     }
+    function reset() {
+      clearInterval(id)
+setSessionCount(25)      
+setBreakCount(5)
+      setStatus("session")
+      setTimerOn(false)
+      setTimer("25:00")
+      setStartStop(1500)
+
+    }
 
   return (
     <div id="container">
@@ -153,7 +163,7 @@ function App() {
       <div id="time-left">{timer}</div>
       <div id="start_stop" onClick={countDown}>huge
       </div>
-      <div id="reset"></div>
+      <div id="reset" onClick={reset}>reset</div>
     </div>
   );
 }
