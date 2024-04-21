@@ -62,7 +62,7 @@ function App() {
             status !== "session" ? setStartStop((breakCount - 1) * 60) : null;
           }
         }
-        j;
+        ;
       }
     } else return null;
   }
