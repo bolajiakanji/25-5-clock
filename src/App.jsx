@@ -70,22 +70,30 @@ function App() {
   }
   let stop;
   stop = startStop;
+  let statusChange = false
 
   let timein = function () {
     stop--;
 
           if (stop === 0){
       setTimer("00.00");
-      if (status === "session") {
+      if (!statusChange) {
         setStatus("break");
         stop = breakCount * 60;
+        stop++
+        statusChange = true
       } else {
         setStatus("session");
         stop = sessionCount * 60;
+        stop++
+        statusChange = false
       }
     } else {
-      if (stop < 60) {
-        setIndicator('red')}
+      if (stop < 60 ) {
+        setIndicator('red')
+      } else {
+        setIndicator("black")
+      }
   
       let minutes = Math.floor(stop / 60);
       minutes = minutes < 10 ? "0" + minutes : minutes;
@@ -117,6 +125,7 @@ function App() {
     setTimerOn(false);
     setTimer("25:00");
     setStartStop(1500);
+    setIndicator("black")
   }
 
   return (
