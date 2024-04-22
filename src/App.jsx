@@ -9,13 +9,15 @@ function App() {
   const [timer, setTimer] = useState("25:00");
   const [startStop, setStartStop] = useState(1500);
   const [timerOn, setTimerOn] = useState(false);
-  
-  const [id, setId] = useState('');
+  const [indicator, setIndicator] = useState("black");
+
+
+  const [id, setId] = useState("");
 
   function changeCount(a, b) {
     if (!timerOn) {
       if (a === "session") {
-        if (b === "increment") {
+        if (b === "increment" && sessionCount < 60) {
           setSessionCount(sessionCount + 1);
           status === "session"
             ? setTimer(() => {
@@ -25,7 +27,7 @@ function App() {
               })
             : "";
           status === "session" ? setStartStop((sessionCount + 1) * 60) : null;
-        } else {
+        } else if (b === "decrement") {
           if (sessionCount > 1) {
             setSessionCount(sessionCount - 1);
             status === "session"
@@ -39,7 +41,8 @@ function App() {
           }
         }
       } else {
-        if (b === "increment") {
+        if (b === "increment" && breakCount < 60) {
+          
           setBreakCount(breakCount + 1);
           status !== "session"
             ? setTimer(() => {
@@ -49,7 +52,7 @@ function App() {
               })
             : "";
           status !== "session" ? setStartStop((breakCount + 1) * 60) : null;
-        } else {
+        } else if (b === "decrement"){
           if (breakCount > 1) {
             setBreakCount(breakCount - 1);
             status !== "session"
@@ -59,75 +62,62 @@ function App() {
                     : breakCount - 1 + ":00";
                 })
               : "";
-            status !== "session" ? setStartStop((breakCount - 1) * 60) : null;
+            status !== "session" ? setStartStop((breakCount - 1) * 60) : "";
           }
         }
-        ;
       }
-    } else return null;
+    } else return "";
   }
-  let stop 
-  stop = startStop 
-      
-  
+  let stop;
+  stop = startStop;
+
   let timein = function () {
-    
-          stop--  
-    
-    if (stop === 0) {
+    stop--;
+
+          if (stop === 0){
       setTimer("00.00");
       if (status === "session") {
         setStatus("break");
         stop = breakCount * 60;
       } else {
         setStatus("session");
-       stop = sessionCount * 60;
-      }} else {
+        stop = sessionCount * 60;
+      }
+    } else {
+      if (stop < 60) {
+        setIndicator('red')}
+  
       let minutes = Math.floor(stop / 60);
-      minutes = minutes < 10 ? "0" + minutes : minutes; 
+      minutes = minutes < 10 ? "0" + minutes : minutes;
       let seconds = stop % 60;
       seconds = seconds < 10 ? "0" + seconds : seconds;
-      setTimer(minutes + ":" + seconds)
-      setStartStop(stop)
-      
-      
-      
-      
-      
+      setTimer(minutes + ":" + seconds);
+      setStartStop(stop);
     }
-    
-    
-  }
-  
+  };
+
   function countDown() {
-   
     if (!timerOn) {
       setTimerOn(true);
-      
-  
-     
-   setId((setInterval(timein, 1000)));
-     console.log(id)
 
- } 
-    else {
+      setId(setInterval(timein, 1000));
+      console.log(id);
+    } else {
+      setTimerOn(false);
+      console.log("here");
+      console.log(id);
+      clearInterval(id);
+    }
+  }
+  function reset() {
+    clearInterval(id);
+    setSessionCount(25);
+    setBreakCount(5);
+    setStatus("session");
     setTimerOn(false);
-        console.log('here')
-        console.log(id)
-        clearInterval(id);
-
-    }
-    }
-    function reset() {
-      clearInterval(id)
-setSessionCount(25)      
-setBreakCount(5)
-      setStatus("session")
-      setTimerOn(false)
-      setTimer("25:00")
-      setStartStop(1500)
-
-    }
+    setTimer("25:00");
+    setStartStop(1500);
+  }
 
   return (
     <div id="container">
@@ -159,11 +149,16 @@ setBreakCount(5)
       </div>
       <div id="break-length">{breakCount}</div>
       <div id="session-length">{sessionCount}</div>
-      <div id="timer-label">fdf</div>
+      <div style={{color : [indicator]}}>
+      <div id="timer-label">{status}</div>
       <div id="time-left">{timer}</div>
-      <div id="start_stop" onClick={countDown}>huge
       </div>
-      <div id="reset" onClick={reset}>reset</div>
+      <div id="start_stop" onClick={countDown}>
+        huge
+      </div>
+      <div id="reset" onClick={reset}>
+        reset
+      </div>
     </div>
   );
 }
