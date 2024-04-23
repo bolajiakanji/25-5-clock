@@ -11,7 +11,6 @@ function App() {
   const [timerOn, setTimerOn] = useState(false);
   const [indicator, setIndicator] = useState("black");
 
-
   const [id, setId] = useState("");
 
   function changeCount(a, b) {
@@ -42,7 +41,6 @@ function App() {
         }
       } else {
         if (b === "increment" && breakCount < 60) {
-          
           setBreakCount(breakCount + 1);
           status !== "session"
             ? setTimer(() => {
@@ -52,7 +50,7 @@ function App() {
               })
             : "";
           status !== "session" ? setStartStop((breakCount + 1) * 60) : null;
-        } else if (b === "decrement"){
+        } else if (b === "decrement") {
           if (breakCount > 1) {
             setBreakCount(breakCount - 1);
             status !== "session"
@@ -70,31 +68,33 @@ function App() {
   }
   let stop;
   stop = startStop;
-  let statusChange = false
+  let statusChange = false;
 
   let timein = function () {
     stop--;
 
-          if (stop === 0){
+    if (stop === 0) {
       setTimer("00.00");
       if (!statusChange) {
         setStatus("break");
         stop = breakCount * 60;
-        stop++
-        statusChange = true
+        stop++;
+        statusChange = true;
       } else {
         setStatus("session");
         stop = sessionCount * 60;
-        stop++
-        statusChange = false
+        stop++;
+        statusChange = false;
       }
+      let sound = document.getElementById("beep")
+      sound.play()
     } else {
-      if (stop < 60 ) {
-        setIndicator('red')
+      if (stop < 60) {
+        setIndicator("red");
       } else {
-        setIndicator("black")
+        setIndicator("black");
       }
-  
+
       let minutes = Math.floor(stop / 60);
       minutes = minutes < 10 ? "0" + minutes : minutes;
       let seconds = stop % 60;
@@ -125,7 +125,11 @@ function App() {
     setTimerOn(false);
     setTimer("25:00");
     setStartStop(1500);
-    setIndicator("black")
+    setIndicator("black");
+    let sound = document.getElementById("beep")
+    sound.pause();
+    sound.currentTime = 0
+    
   }
 
   return (
@@ -158,9 +162,13 @@ function App() {
       </div>
       <div id="break-length">{breakCount}</div>
       <div id="session-length">{sessionCount}</div>
-      <div style={{color : [indicator]}}>
-      <div id="timer-label">{status}</div>
-      <div id="time-left">{timer}</div>
+      <div style={{ color: [indicator] }}>
+        <div id="timer-label">{status}</div>
+        <div id="time-left">{timer}</div>
+        <audio
+          src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
+          id="beep"
+        ></audio>
       </div>
       <div id="start_stop" onClick={countDown}>
         huge
