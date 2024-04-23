@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { FiRefreshCw } from "react-icons/fi";
+import { HiPlayPause } from "react-icons/hi2";
+import { TiArrowDownThick } from "react-icons/ti";
+import { TiArrowUpThick } from "react-icons/ti";
 
 import "./App.css";
 
@@ -86,8 +90,8 @@ function App() {
         stop++;
         statusChange = false;
       }
-      let sound = document.getElementById("beep")
-      sound.play()
+      let sound = document.getElementById("beep");
+      sound.play();
     } else {
       if (stop < 60) {
         setIndicator("red");
@@ -126,10 +130,9 @@ function App() {
     setTimer("25:00");
     setStartStop(1500);
     setIndicator("black");
-    let sound = document.getElementById("beep")
+    let sound = document.getElementById("beep");
     sound.pause();
-    sound.currentTime = 0
-    
+    sound.currentTime = 0;
   }
 
   return (
@@ -140,13 +143,13 @@ function App() {
         id="break-decrement"
         onClick={() => changeCount("break", "decrement")}
       >
-        a
+        <TiArrowDownThick />
       </div>
       <div
         id="session-decrement"
         onClick={() => changeCount("session", "decrement")}
       >
-        b
+        <TiArrowUpThick />
       </div>
       <div
         id="break-increment"
@@ -171,10 +174,10 @@ function App() {
         ></audio>
       </div>
       <div id="start_stop" onClick={countDown}>
-        huge
+        <HiPlayPause />
       </div>
       <div id="reset" onClick={reset}>
-        reset
+        <FiRefreshCw />
       </div>
     </div>
   );
