@@ -13,7 +13,7 @@ function App() {
   const [timer, setTimer] = useState("25:00");
   const [startStop, setStartStop] = useState(1500);
   const [timerOn, setTimerOn] = useState(false);
-  const [indicator, setIndicator] = useState("black");
+  const [indicator, setIndicator] = useState("white");
 
   const [id, setId] = useState("");
 
@@ -96,7 +96,7 @@ function App() {
       if (stop < 60) {
         setIndicator("red");
       } else {
-        setIndicator("black");
+        setIndicator("white");
       }
 
       let minutes = Math.floor(stop / 60);
@@ -108,7 +108,7 @@ function App() {
     }
   };
 
-  function countDown() {
+  function count() {
     if (!timerOn) {
       setTimerOn(true);
 
@@ -129,7 +129,7 @@ function App() {
     setTimerOn(false);
     setTimer("25:00");
     setStartStop(1500);
-    setIndicator("black");
+    setIndicator("white");
     let sound = document.getElementById("beep");
     sound.pause();
     sound.currentTime = 0;
@@ -137,35 +137,50 @@ function App() {
 
   return (
     <div id="container">
-      <div id="break-label">Break Lenght</div>
-      <div id="session-label">Session Length</div>
-      <div
-        id="break-decrement"
-        onClick={() => changeCount("break", "decrement")}
-      >
-        <TiArrowDownThick />
+      <div id="title">25 + 5 Clock</div>
+      <div id="length">
+        <div id="break-length">
+          <div id="break-label">Break Lenght</div>
+          <div id="break-details">
+            {" "}
+            <div
+              id="break-decrement"
+              onClick={() => changeCount("break", "decrement")}
+            >
+              <TiArrowDownThick />
+            </div>
+            <div id="break-length">{breakCount}</div>
+            <div
+              id="break-increment"
+              onClick={() => changeCount("break", "increment")}
+            >
+              <TiArrowUpThick />
+            </div>
+          </div>
+        </div>
+        <div id="session-length">
+          <div id="session-label">Session Length</div>
+          <div id="break-details">
+            <div
+              id="session-decrement"
+              onClick={() => changeCount("session", "decrement")}
+            >
+              <TiArrowDownThick />
+            </div>
+            <div id="session-length">{sessionCount}</div>
+
+            <div
+              id="session-increment"
+              onClick={() => changeCount("session", "increment")}
+            >
+              <TiArrowUpThick />
+            </div>
+          </div>
+        </div>
       </div>
-      <div
-        id="session-decrement"
-        onClick={() => changeCount("session", "decrement")}
-      >
-        <TiArrowUpThick />
-      </div>
-      <div
-        id="break-increment"
-        onClick={() => changeCount("break", "increment")}
-      >
-        c
-      </div>
-      <div
-        id="session-increment"
-        onClick={() => changeCount("session", "increment")}
-      >
-        d
-      </div>
-      <div id="break-length">{breakCount}</div>
-      <div id="session-length">{sessionCount}</div>
-      <div style={{ color: [indicator] }}>
+      <div id="countdown-box">
+
+      <div id="count-down" style={{ color: [indicator] }}>
         <div id="timer-label">{status}</div>
         <div id="time-left">{timer}</div>
         <audio
@@ -173,11 +188,14 @@ function App() {
           id="beep"
         ></audio>
       </div>
-      <div id="start_stop" onClick={countDown}>
-        <HiPlayPause />
       </div>
-      <div id="reset" onClick={reset}>
-        <FiRefreshCw />
+      <div id="controlS">
+        <div id="count" onClick={count}>
+          <HiPlayPause />
+        </div>
+        <div id="reset" onClick={reset}>
+          <FiRefreshCw />
+        </div>
       </div>
     </div>
   );
