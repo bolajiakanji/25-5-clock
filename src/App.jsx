@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { FiRefreshCw } from "react-icons/fi";
-import { HiPlayPause } from "react-icons/hi2";
+import { LuRefreshCw } from "react-icons/lu";
 import { TiArrowDownThick } from "react-icons/ti";
 import { TiArrowUpThick } from "react-icons/ti";
+import {PiPlayPauseFill} from "react-icons/pi";
 
 import "./App.css";
 
 function App() {
   const [sessionCount, setSessionCount] = useState(25);
   const [breakCount, setBreakCount] = useState(5);
-  const [status, setStatus] = useState("session");
+  const [status, setStatus] = useState("Session");
   const [timer, setTimer] = useState("25:00");
   const [startStop, setStartStop] = useState(1500);
   const [timerOn, setTimerOn] = useState(false);
@@ -22,49 +22,49 @@ function App() {
       if (a === "session") {
         if (b === "increment" && sessionCount < 60) {
           setSessionCount(sessionCount + 1);
-          status === "session"
+          status === "Session"
             ? setTimer(() => {
                 return sessionCount + 1 < 10
                   ? "0" + (sessionCount + 1) + ":00"
                   : sessionCount + 1 + ":00";
               })
             : "";
-          status === "session" ? setStartStop((sessionCount + 1) * 60) : null;
+          status === "Session" ? setStartStop((sessionCount + 1) * 60) : null;
         } else if (b === "decrement") {
           if (sessionCount > 1) {
             setSessionCount(sessionCount - 1);
-            status === "session"
+            status === "Session"
               ? setTimer(() => {
                   return sessionCount - 1 < 10
                     ? "0" + (sessionCount - 1) + ":00"
                     : sessionCount - 1 + ":00";
                 })
               : "";
-            status === "session" ? setStartStop((sessionCount - 1) * 60) : null;
+            status === "Session" ? setStartStop((sessionCount - 1) * 60) : null;
           }
         }
       } else {
         if (b === "increment" && breakCount < 60) {
           setBreakCount(breakCount + 1);
-          status !== "session"
+          status !== "Session"
             ? setTimer(() => {
                 return breakCount + 1 < 10
                   ? "0" + (breakCount + 1) + ":00"
                   : breakCount + 1 + ":00";
               })
             : "";
-          status !== "session" ? setStartStop((breakCount + 1) * 60) : null;
+          status !== "Session" ? setStartStop((breakCount + 1) * 60) : null;
         } else if (b === "decrement") {
           if (breakCount > 1) {
             setBreakCount(breakCount - 1);
-            status !== "session"
+            status !== "Session"
               ? setTimer(() => {
                   return breakCount - 1 < 10
                     ? "0" + (breakCount - 1) + ":00"
                     : breakCount - 1 + ":00";
                 })
               : "";
-            status !== "session" ? setStartStop((breakCount - 1) * 60) : "";
+            status !== "Session" ? setStartStop((breakCount - 1) * 60) : "";
           }
         }
       }
@@ -80,12 +80,12 @@ function App() {
     if (stop === 0) {
       setTimer("00.00");
       if (!statusChange) {
-        setStatus("break");
+        setStatus("Break");
         stop = breakCount * 60;
         stop++;
         statusChange = true;
       } else {
-        setStatus("session");
+        setStatus("Session");
         stop = sessionCount * 60;
         stop++;
         statusChange = false;
@@ -113,11 +113,9 @@ function App() {
       setTimerOn(true);
 
       setId(setInterval(timein, 1000));
-      console.log(id);
     } else {
       setTimerOn(false);
-      console.log("here");
-      console.log(id);
+
       clearInterval(id);
     }
   }
@@ -125,7 +123,7 @@ function App() {
     clearInterval(id);
     setSessionCount(25);
     setBreakCount(5);
-    setStatus("session");
+    setStatus("Session");
     setTimerOn(false);
     setTimer("25:00");
     setStartStop(1500);
@@ -139,10 +137,9 @@ function App() {
     <div id="container">
       <div id="title">25 + 5 Clock</div>
       <div id="length">
-        <div id="break-length">
+        <div id="break">
           <div id="break-label">Break Lenght</div>
           <div id="break-details">
-            {" "}
             <div
               id="break-decrement"
               onClick={() => changeCount("break", "decrement")}
@@ -158,7 +155,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div id="session-length">
+        <div id="session">
           <div id="session-label">Session Length</div>
           <div id="break-details">
             <div
@@ -179,24 +176,25 @@ function App() {
         </div>
       </div>
       <div id="countdown-box">
-
-      <div id="count-down" style={{ color: [indicator] }}>
-        <div id="timer-label">{status}</div>
-        <div id="time-left">{timer}</div>
-        <audio
-          src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
-          id="beep"
-        ></audio>
-      </div>
+        <div id="count-down" style={{ color: [indicator] }}>
+          <div id="timer-label">{status}</div>
+          <div id="time-left">{timer}</div>
+          <audio
+            src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
+            id="beep"
+          ></audio>
+        </div>
       </div>
       <div id="controlS">
-        <div id="count" onClick={count}>
-          <HiPlayPause />
+        <div id="start_stop" onClick={count}>
+<PiPlayPauseFill />
         </div>
+
         <div id="reset" onClick={reset}>
-          <FiRefreshCw />
+          <LuRefreshCw />
         </div>
       </div>
+      <p className="coder">Coded by dev Bolaji</p>
     </div>
   );
 }

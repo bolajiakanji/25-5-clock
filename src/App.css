@@ -4,8 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
-  
+  user-select: none;
 }
 body {
   background-color: rgb(165, 67, 76);
@@ -16,83 +15,91 @@ body {
 #container {
   margin: 18vh auto;
   width: 320px;
-  background-color: ;
+  
+  
 }
 
 #title {
-    font-size: 2.7rem;
-    font-weight: bold;
-    text-align: center;
-    margin: 1.5rem;
-
-    
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 1.5rem;
 }
 
 #length {
-    display: flex;
-    justify-content: space-between;
-    font-size:1.2rem ;
+  display: flex;
+  justify-content: center;
+  font-size: 1.2rem;
+  gap:2.6rem ;
+  font-size: 1.3rem;
 }
 
 #break-details {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 6px;
-    cursor: pointer;
-    
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+  cursor: pointer;
+  font-size: 1.4rem;
 }
 
 #session-details {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 6px;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
 }
 
 #countdown-box {
-    display: flex;
+  display: flex;
 
-    justify-content: center;
-    margin-top: 1rem;
-
-
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 #count-down {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    justify-content: center;
-    text-align: center;
-    
-    border: 7px solid rgb(153, 28, 41);
-    border-radius: 50px;
-    width: 16rem;
-    height: 10rem;
-    font-size: 2rem;
-    font-weigt: bold;
-    }
+  justify-content: center;
+  text-align: center;
 
-    #time-left {
-      font-size  : 5rem;
-    }
+  border: 7px solid rgb(153, 28, 41);
+  border-radius: 50px;
+  width: 14rem;
+  height: 10rem;
+  font-size: 2rem;
+  font-weigt: bold;
+}
+
+#time-left {
+  font-size: 4rem;
+}
 
 #controlS {
-    
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-    font-size: 3rem;
-    cursor: pointer;
-    
-    
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 2rem;
+  margin-bottom: 1.8rem;
+  font-weight: ;
+}
+
+#start_stop {
+  cursor: pointer;
 }
 
 #reset {
-    
+  padding-top: 5px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  font-weight:lighter ;
 }
-    
 
+.coder {
+  font-style: italic;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.8rem;
+  text-align: center;
+}
