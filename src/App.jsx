@@ -2,7 +2,7 @@ import { useState } from "react";
 import { LuRefreshCw } from "react-icons/lu";
 import { TiArrowDownThick } from "react-icons/ti";
 import { TiArrowUpThick } from "react-icons/ti";
-import {PiPlayPauseFill} from "react-icons/pi";
+import { PiPlayPauseFill } from "react-icons/pi";
 
 import "./App.css";
 
@@ -141,6 +141,7 @@ function App() {
           <div id="break-label">Break Lenght</div>
           <div id="break-details">
             <div
+              className="count-change"
               id="break-decrement"
               onClick={() => changeCount("break", "decrement")}
             >
@@ -148,6 +149,7 @@ function App() {
             </div>
             <div id="break-length">{breakCount}</div>
             <div
+              className="count-change"
               id="break-increment"
               onClick={() => changeCount("break", "increment")}
             >
@@ -159,6 +161,7 @@ function App() {
           <div id="session-label">Session Length</div>
           <div id="break-details">
             <div
+              className="count-change"
               id="session-decrement"
               onClick={() => changeCount("session", "decrement")}
             >
@@ -167,6 +170,7 @@ function App() {
             <div id="session-length">{sessionCount}</div>
 
             <div
+              className="count-change"
               id="session-increment"
               onClick={() => changeCount("session", "increment")}
             >
@@ -187,14 +191,14 @@ function App() {
       </div>
       <div id="controlS">
         <div id="start_stop" onClick={count}>
-<PiPlayPauseFill />
+          <PiPlayPauseFill />
         </div>
 
         <div id="reset" onClick={reset}>
           <LuRefreshCw />
         </div>
       </div>
-      <p className="coder">Coded by dev Bolaji</p>
+      <p className="coder">Coded by Dev Bolaji</p>
     </div>
   );
 }

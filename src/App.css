@@ -15,10 +15,7 @@ body {
 #container {
   margin: 14vh auto;
   width: 350px;
-  
-  overflow: hidden;
-  
-  
+ overflow: hidden;
 }
 
 #title {
@@ -32,7 +29,7 @@ body {
   display: flex;
   justify-content: center;
   font-size: 1.2rem;
-  gap:2.2rem ;
+  gap: 2.2rem;
   font-size: 1.3rem;
 }
 
@@ -41,7 +38,6 @@ body {
   justify-content: center;
   gap: 7px;
   margin-top: 6px;
-  cursor: pointer;
   font-size: 1.4rem;
 }
 
@@ -52,26 +48,26 @@ body {
   margin-top: 6px;
 }
 
+.count-change {
+    cursor: pointer;
+}
+
 #countdown-box {
   display: flex;
-
-  justify-content: center;
+justify-content: center;
   margin-top: 1rem;
 }
 
 #count-down {
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   text-align: center;
-
   border: 7px solid rgb(153, 28, 41);
   border-radius: 50px;
   width: 14rem;
   height: 10rem;
   font-size: 2rem;
-  font-weigt: bold;
 }
 
 #time-left {
@@ -85,7 +81,6 @@ body {
   margin-top: 1rem;
   font-size: 2rem;
   margin-bottom: 1.8rem;
-  font-weight: ;
 }
 
 #start_stop {
@@ -96,7 +91,7 @@ body {
   padding-top: 5px;
   font-size: 1.4rem;
   cursor: pointer;
-  font-weight:lighter ;
+  font-weight: lighter;
 }
 
 .coder {
